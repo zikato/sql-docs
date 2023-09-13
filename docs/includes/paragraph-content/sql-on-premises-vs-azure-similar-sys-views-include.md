@@ -21,7 +21,7 @@ For illustration, the following table lists and compares two subsets of the syst
 
 | Name from SQL Server | Name from cloud service |
 | :--- | :--- |
-| server_event_notifications<br />server_event_session_actions<br />server_event_session_events<br />server_event_session_fields<br />server_event_session_targets<br />server_event_sessions<br />server_events<br />server_trigger_events | database_event_session_actions<br />database_event_session_events<br />database_event_session_fields<br />database_event_session_targets<br />database_event_sessions |
+| server_event_notifications<br />server_event_session_actions<br />server_event_session_events<br />server_event_session_fields<br />server_event_session_targets<br />server_event_sessions<br />server_events<br />server_trigger_events | <br />database_event_session_actions<br />database_event_session_events<br />database_event_session_fields<br />database_event_session_targets<br />database_event_sessions<br /> |
 
 The two lists in the preceding table were accurate as of March 2022. For an accurate list, run the following Transact-SQL SELECT statement:
 
@@ -29,9 +29,9 @@ The two lists in the preceding table were accurate as of March 2022. For an accu
 SELECT name
     FROM sys.all_objects
     WHERE
-        (name LIKE 'database\_%' { ESCAPE '\' } OR
-         name LIKE 'server\_%' { ESCAPE '\' })
-        AND name LIKE '%\_event%' { ESCAPE '\' }
+        (name LIKE 'database\_%' ESCAPE '\' OR
+         name LIKE 'server\_%' ESCAPE '\')
+        AND name LIKE '%\_event%' ESCAPE '\'
         AND type = 'V'
     ORDER BY name;
 ```
